@@ -36,12 +36,16 @@ int score_triplets(char c1, char c2, char c3) {
 }
 
 int main(void) {
-  char c[3];
-  int sum = 0;
   FILE *f = fopen("data/01-3.dat", "r");
   if (NULL == f) {
     perror("Error opening file");
     return 1;
+  }
+  char c[3];
+  int sum = 0;
+  int n;
+  while ((n = fread(c, 1, 3, f)) > 0 ) {
+    sum += score_triplets(c[0], c[1], c[2]);
   }
   while (EOF != (c[0] = fgetc(f))) {
     c[1] = fgetc(f);

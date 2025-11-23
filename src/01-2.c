@@ -23,15 +23,15 @@ int score_pairs(char c1, char c2) {
 }
 
 int main(void) {
-  char c[2];
-  int sum = 0;
   FILE *f = fopen("data/01-2.dat", "r");
   if (NULL == f) {
     perror("Error opening file");
     return 1;
   }
-  while (EOF != (c[0] = fgetc(f))) {
-    c[1] = fgetc(f); // We've got an even number of chars, this is fine.
+  char c[2];
+  int sum = 0;
+  int n;
+  while ((n = fread(c, 1, 2, f)) > 0) {
     sum += score_pairs(c[0], c[1]);
   }
   fclose(f);
